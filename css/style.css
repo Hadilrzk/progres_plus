@@ -90,6 +90,12 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
 .bnav-notif { position: relative; }
 .bnav-dot { position: absolute; top: 0; right: 8px; width: 8px; height: 8px; background: var(--red); border-radius: 50%; border: 2px solid var(--bg); display: none; }
 
+/* Icons */
+.icon-svg { width: 20px; height: 20px; display: inline-block; vertical-align: middle; color: inherit; }
+.ico .icon-svg { width: 18px; height: 18px; }
+.bio-btn .icon-svg { width: 18px; height: 18px; }
+.modal-header .icon-svg { width: 18px; height: 18px; margin-right: 8px; vertical-align: text-bottom; }
+
 /* MOBILE PANEL */
 .mobile-panel { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 800; background: #fff; border-radius: 20px 20px 0 0; box-shadow: 0 -8px 40px rgba(0,0,0,.15); max-height: 70vh; overflow-y: auto; }
 .mobile-panel-header { padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: #fff; }
