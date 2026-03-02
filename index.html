@@ -4,394 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>PROGRES+</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
---blue: #2355F5; --blue-h: #1A44D4; --blue-pale: #EEF2FF;
---green: #16A34A; --green-bg: #F0FDF4; --green-bd: #BBF7D0;
---red: #DC2626; --bg: #F3F2EE; --card: #ECEAE4;
---border: #DDDBD4; --text: #111827; --muted: #6B7280;
---sidebar-w: 240px;
-}
-html { font-size: 16px; }
-body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-/* ══ PAGES ══ */
-.page { display: none; min-height: 100vh; }
-.page.active { display: flex; }
-
-/* ══════════════════
-LOGIN PAGE
-══════════════════ */
-#login-page { flex-direction: row; }
-
-.login-side {
-width: 42%; flex-shrink: 0;
-background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
-display: flex; flex-direction: column;
-justify-content: center; align-items: center;
-padding: 56px 40px; text-align: center; position: relative; overflow: hidden;
-}
-.login-side::before {
-content: ''; position: absolute; top: -100px; right: -100px;
-width: 300px; height: 300px; background: rgba(255,255,255,.07); border-radius: 50%;
-}
-.logo-box {
-width: 52px; height: 52px; background: rgba(255,255,255,.25);
-border-radius: 14px; display: flex; align-items: center; justify-content: center;
-font-family: 'Space Mono', monospace; font-weight: 700; font-size: 14px;
-color: #fff; margin-bottom: 20px; position: relative; z-index: 1;
-}
-.login-side .portal-lbl { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 10px; position: relative; z-index: 1; }
-.login-side h1 { font-size: 40px; font-weight: 800; color: #fff; margin-bottom: 14px; position: relative; z-index: 1; }
-.login-side .sub { font-size: 14px; color: rgba(255,255,255,.8); line-height: 1.7; position: relative; z-index: 1; }
-
-.login-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 40px; }
-.login-box { width: 100%; max-width: 380px; }
-
-.student-access-btn {
-width: 100%; padding: 13px; background: var(--blue); color: #fff;
-border: none; border-radius: 10px; font-family: 'Outfit', sans-serif;
-font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 24px;
-transition: background .2s;
-}
-.student-access-btn:hover { background: var(--blue-h); }
-
-.lbl { display: block; font-size: 13px; font-weight: 600; margin-bottom: 7px; }
-.inp {
-width: 100%; padding: 13px 15px; background: var(--card);
-border: 1.5px solid var(--border); border-radius: 10px;
-font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--text);
-outline: none; transition: border-color .2s; margin-bottom: 16px;
-}
-.inp:focus { border-color: var(--blue); }
-.inp::placeholder { color: #aaa; }
-
-.btn-lg {
-width: 100%; padding: 14px;
-background: linear-gradient(90deg, #3a7bfd, #0052d4);
-color: #fff; border: none; border-radius: 10px;
-font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600;
-cursor: pointer; margin-bottom: 16px; transition: opacity .2s;
-}
-.btn-lg:hover { opacity: .9; }
-
-.divline { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; margin-bottom: 12px; }
-.divline::before, .divline::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-.bio-btn {
-width: 100%; padding: 12px; background: transparent;
-border: 1.5px solid var(--green); border-radius: 10px;
-color: var(--green); font-family: 'Outfit', sans-serif;
-font-size: 14px; font-weight: 600; cursor: pointer;
-}
-
-/* ══════════════════
-APP SHELL
-══════════════════ */
-#app-page { flex-direction: column; }
-
-/* TOPBAR */
-.topbar {
-position: sticky; top: 0; z-index: 300;
-background: var(--bg); border-bottom: 1px solid var(--border);
-padding: 0 24px; height: 60px;
-display: flex; align-items: center; justify-content: space-between;
-}
-.tb-left { display: flex; align-items: center; gap: 20px; }
-.tb-logo { display: flex; align-items: center; gap: 9px; }
-.tb-icon {
-width: 34px; height: 34px; background: var(--blue); border-radius: 9px;
-display: flex; align-items: center; justify-content: center;
-font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; color: #fff;
-}
-.tb-name { font-size: 15px; font-weight: 700; }
-.top-nav { display: flex; gap: 2px; }
-.tnav {
-padding: 7px 14px; border-radius: 8px; border: none; background: transparent;
-font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
-color: var(--muted); cursor: pointer; transition: .2s;
-}
-.tnav.on, .tnav:hover { background: var(--blue); color: #fff; }
-.tb-right { display: flex; align-items: center; gap: 8px; }
-.pill-sm {
-padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--border);
-background: var(--card); font-size: 12px; color: var(--muted);
-}
-
-/* NOTIFICATIONS */
-.notif-wrap { position: relative; }
-.ico {
-width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--border);
-background: var(--card); display: flex; align-items: center; justify-content: center;
-cursor: pointer; font-size: 16px; position: relative;
-}
-.notif-dot {
-position: absolute; top: 2px; right: 2px; width: 9px; height: 9px;
-background: var(--red); border-radius: 50%; border: 2px solid var(--bg); display: none;
-}
-.notif-dropdown {
-position: absolute; top: calc(100% + 10px); right: 0; width: 320px;
-background: #fff; border: 1px solid var(--border); border-radius: 14px;
-box-shadow: 0 8px 32px rgba(0,0,0,.12); z-index: 500; display: none; overflow: hidden;
-}
-.notif-dropdown.open { display: block; animation: dropIn .2s ease; }
-@keyframes dropIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-.nd-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-.nd-header h4 { font-size: 14px; font-weight: 700; }
-.nd-clear { font-size: 12px; color: var(--blue); cursor: pointer; border: none; background: none; font-family: 'Outfit', sans-serif; }
-.nd-item { padding: 14px 18px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .15s; display: flex; gap: 12px; align-items: flex-start; }
-.nd-item:last-child { border-bottom: none; }
-.nd-item:hover { background: var(--blue-pale); }
-.nd-item.unread { background: #F0F4FF; }
-.nd-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.nd-body h5 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-.nd-body p { font-size: 12px; color: var(--muted); }
-.nd-time { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.nd-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
-.av { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); color: #fff; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; border: none; cursor: pointer; }
-
-/* ══════════════════
-SIDEBAR (mobile)
-══════════════════ */
-.sidebar-overlay {
-display: none; position: fixed; inset: 0; z-index: 400;
-background: rgba(0,0,0,.4); backdrop-filter: blur(2px);
-}
-.sidebar-overlay.open { display: block; }
-
-.sidebar {
-position: fixed; top: 0; left: -260px; bottom: 0; z-index: 500;
-width: 260px; background: var(--bg); border-right: 1px solid var(--border);
-display: flex; flex-direction: column;
-transition: left .3s cubic-bezier(.4,0,.2,1);
-padding: 0 0 24px;
-}
-.sidebar.open { left: 0; }
-
-.sidebar-head {
-padding: 20px 20px 16px;
-border-bottom: 1px solid var(--border);
-display: flex; align-items: center; justify-content: space-between;
-}
-.sidebar-logo { display: flex; align-items: center; gap: 9px; }
-.sidebar-close {
-width: 30px; height: 30px; border-radius: 50%; border: none;
-background: var(--card); font-size: 16px; cursor: pointer; color: var(--muted);
-display: flex; align-items: center; justify-content: center;
-}
-.sidebar-student {
-margin: 16px 16px 0;
-background: var(--card); border: 1px solid var(--border);
-border-radius: 12px; padding: 12px 14px;
-display: flex; align-items: center; gap: 10px;
-}
-.sidebar-av {
-width: 36px; height: 36px; border-radius: 50%; background: var(--blue);
-color: #fff; display: flex; align-items: center; justify-content: center;
-font-weight: 700; font-size: 13px; flex-shrink: 0;
-}
-.sidebar-nm { font-size: 13px; font-weight: 700; }
-.sidebar-info { font-size: 11px; color: var(--muted); }
-
-.sidebar-nav { padding: 12px 10px; flex: 1; }
-.snav-btn {
-width: 100%; display: flex; align-items: center; gap: 11px;
-padding: 11px 12px; border-radius: 10px; border: none; background: transparent;
-font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
-color: var(--muted); cursor: pointer; transition: .2s; text-align: left;
-margin-bottom: 2px;
-}
-.snav-btn:hover { background: var(--card); color: var(--text); }
-.snav-btn.on { background: var(--blue); color: #fff; }
-.snav-icon { font-size: 18px; width: 22px; text-align: center; }
-
-/* hamburger */
-.ham-btn {
-display: none; width: 34px; height: 34px; border-radius: 8px;
-border: 1.5px solid var(--border); background: var(--card);
-flex-direction: column; align-items: center; justify-content: center;
-gap: 5px; cursor: pointer;
-}
-.ham-btn span { display: block; width: 16px; height: 2px; background: var(--text); border-radius: 2px; }
-
-/* ══════════════════
-CONTENT
-══════════════════ */
-.content { padding: 24px; padding-bottom: 40px; }
-.sec { display: none; }
-.sec.on { display: block; }
-.ph { margin-bottom: 20px; }
-.ph h2 { font-size: 20px; font-weight: 700; }
-.ph small { font-size: 12px; color: var(--muted); margin-top: 2px; display: block; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
-.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: block; }
-.pill-btn {
-display: inline-block; padding: 6px 14px; background: var(--blue); color: #fff;
-border-radius: 20px; font-size: 11px; font-weight: 600; border: none;
-font-family: 'Outfit', sans-serif; cursor: pointer; margin-top: 4px;
-}
-.pill-btn:hover { background: var(--blue-h); }
-
-/* DASHBOARD */
-.notif-bar {
-background: var(--blue); border-radius: 14px; padding: 16px 20px;
-margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
-}
-.notif-bar h3 { color: #fff; font-size: 15px; font-weight: 600; }
-.notif-bar p { color: rgba(255,255,255,.8); font-size: 12px; margin-top: 2px; }
-.notif-cta {
-padding: 8px 14px; border-radius: 8px; background: rgba(255,255,255,.2);
-border: 1px solid rgba(255,255,255,.3); color: #fff;
-font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
-cursor: pointer; white-space: nowrap;
-}
-.stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 16px; }
-.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; }
-.sv { font-size: 28px; font-weight: 800; margin-bottom: 3px; }
-.sv.blue { color: var(--blue); }
-.sv.green { color: var(--green); }
-.sl { font-size: 12px; color: var(--muted); }
-.ss { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.btm { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.chip { background: var(--blue-pale); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
-.chip-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--blue); margin-bottom: 2px; }
-.chip-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-.chip-info { font-size: 11px; color: var(--muted); }
-.cal-date { font-size: 22px; font-weight: 800; color: var(--blue); margin-bottom: 3px; }
-.cal-ev { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
-
-/* MARKS */
-.sem-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
-.st { padding: 6px 16px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--card); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: .2s; }
-.st.on { background: var(--blue); color: #fff; border-color: var(--blue); }
-.mm { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-.mm-d { font-size: 13px; font-weight: 600; }
-.mm-d.pass { color: var(--green); }
-.mm-d.fail { color: var(--red); }
-.mm-a { background: var(--green); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-.mm-c { background: var(--blue); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; border: 1px solid var(--border); }
-table.mt { width: 100%; border-collapse: collapse; background: var(--card); min-width: 400px; }
-table.mt th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--border); white-space: nowrap; }
-table.mt td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
-table.mt tr:last-child td { border-bottom: none; }
-.mg { color: var(--green); font-weight: 700; }
-.mr { color: var(--red); font-weight: 700; }
-.mn { font-weight: 700; color: var(--muted); }
-.new-tag { display: inline-block; padding: 2px 8px; background: var(--blue-pale); color: var(--blue); border-radius: 8px; font-size: 10px; font-weight: 700; margin-left: 6px; }
-
-/* TIMETABLE */
-.tt-legend { display: flex; gap: 8px; margin-bottom: 14px; }
-.tl { padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-.tl-c { background: #DBEAFE; color: var(--blue); }
-.tl-td { background: #DCFCE7; color: var(--green); }
-.tl-tp { background: #FEE2E2; color: var(--red); }
-.tt-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; border: 1px solid var(--border); }
-table.tt { width: 100%; border-collapse: collapse; background: var(--card); min-width: 480px; }
-table.tt th { padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; }
-table.tt td { padding: 8px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
-table.tt tr:last-child td { border-bottom: none; }
-.day-td { padding: 12px 14px !important; font-weight: 700; font-size: 13px; white-space: nowrap; }
-.ttc { border-radius: 9px; padding: 9px 10px; line-height: 1.4; }
-.ttc.c { background: #DBEAFE; }
-.ttc.td { background: #DCFCE7; }
-.ttc.tp { background: #FEE2E2; }
-.ttc-type { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px; }
-.ttc.c .ttc-type { color: var(--blue); }
-.ttc.td .ttc-type { color: var(--green); }
-.ttc.tp .ttc-type { color: var(--red); }
-.ttc-name { font-size: 12px; font-weight: 700; }
-.ttc-info { font-size: 10px; color: var(--muted); margin-top: 1px; }
-.tt-empty { color: var(--border); font-size: 18px; display: block; text-align: center; padding: 14px 0; }
-
-/* PROFILE — teammates' style merged */
-.prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.prof-card { background: #d4edda; border-radius: 14px; padding: 20px; }
-.prof-head { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid rgba(0,0,0,.08); }
-.prof-av { width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
-.prof-nm { font-size: 15px; font-weight: 700; }
-.prof-yr { font-size: 11px; color: var(--muted); }
-.ir { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,.08); }
-.ir:last-child { border-bottom: none; }
-.ik { font-size: 12px; color: var(--muted); }
-.iv { font-size: 13px; font-weight: 600; }
-.schol-card { background: var(--green-bg); border: 1px solid var(--green-bd); border-radius: 14px; padding: 20px; text-align: center; }
-.schol-status { color: var(--green); font-size: 13px; font-weight: 600; margin-bottom: 8px; display: inline-block; background: #fff; padding: 4px 14px; border-radius: 20px; }
-.schol-amt { font-size: 36px; font-weight: 800; margin: 10px 0 6px; }
-.schol-date { font-size: 12px; color: var(--muted); }
-.ev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-.ev-card { background: #eaebf5; border-radius: 14px; padding: 16px 18px; text-align: center; }
-.ev-date { font-size: 17px; font-weight: 800; color: var(--blue); margin-bottom: 3px; }
-.ev-nm { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-.ev-rng { font-size: 11px; color: var(--muted); }
-
-/* MODAL */
-.modal-overlay { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,.45); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
-.modal-overlay.open { display: flex; animation: fadeIn .2s; }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.modal-box { background: var(--bg); border-radius: 20px; width: 100%; max-width: 520px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.2); animation: slideUp .25s ease; }
-@keyframes slideUp { from { transform:translateY(30px); opacity:0; } to { transform:translateY(0); opacity:1; } }
-.modal-header { position: sticky; top: 0; background: var(--bg); padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-.modal-header h3 { font-size: 18px; font-weight: 700; }
-.modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--card); font-size: 18px; cursor: pointer; color: var(--muted); }
-.modal-body { padding: 20px 24px; }
-.cal-month { margin-bottom: 20px; }
-.cal-month-title { font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-.cal-event-row { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--border); }
-.cal-event-row:last-child { border-bottom: none; }
-.cal-ev-date { font-size: 13px; font-weight: 800; color: var(--blue); min-width: 60px; }
-.cal-ev-info h5 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-.cal-ev-info p { font-size: 12px; color: var(--muted); }
-.cal-tag { display: inline-block; padding: 2px 8px; border-radius: 8px; font-size: 10px; font-weight: 700; margin-top: 4px; }
-.tag-exam { background: #FEE2E2; color: var(--red); }
-.tag-session { background: #FEF9C3; color: #92400E; }
-.tag-holiday { background: var(--green-bg); color: var(--green); }
-.tag-event { background: var(--blue-pale); color: var(--blue); }
-
-/* Icon SVG */
-.icon-svg { width: 18px; height: 18px; display: inline-block; vertical-align: middle; }
-
-/* ══════════════════
-RESPONSIVE
-══════════════════ */
-@media (max-width: 900px) {
-/* login */
-#login-page { flex-direction: column; }
-.login-side { width: 100%; padding: 28px 24px 22px; flex-direction: row; align-items: center; gap: 14px; text-align: left; }
-.logo-box { margin-bottom: 0; flex-shrink: 0; }
-.login-side h1 { font-size: 22px; margin-bottom: 4px; }
-.login-side .sub { font-size: 12px; }
-.login-main { padding: 28px 20px; }
-
-/* topbar */
-.top-nav { display: none; }
-.pill-sm { display: none; }
-.ham-btn { display: flex; }
-.topbar { padding: 0 16px; height: 56px; }
-
-/* content */
-.content { padding: 16px 16px 40px; }
-.ph h2 { font-size: 18px; }
-.stats { grid-template-columns: 1fr 1fr; }
-.stats .stat-card:last-child { grid-column: span 2; display: flex; align-items: center; justify-content: space-between; }
-.btm { grid-template-columns: 1fr; }
-.notif-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
-.prof-grid { grid-template-columns: 1fr; }
-.ev-grid { grid-template-columns: 1fr 1fr; }
-.ev-grid .ev-card:last-child { grid-column: span 2; }
-.notif-dropdown { width: 290px; right: -10px; }
-}
-
-@media (max-width: 480px) {
-.stats { grid-template-columns: 1fr; }
-.stats .stat-card:last-child { grid-column: span 1; flex-direction: column; align-items: flex-start; }
-.ev-grid { grid-template-columns: 1fr; }
-.ev-grid .ev-card:last-child { grid-column: span 1; }
-.login-side { flex-direction: column; text-align: center; }
-}
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -400,23 +13,24 @@ RESPONSIVE
 <div class="login-side">
 <div class="logo-box">P+</div>
 <div>
-<p class="portal-lbl">Student Portal</p>
-<h1>PROGRES+</h1>
-<p class="sub">Ministry of Higher Education<br>and Scientific Research</p>
+<div class="lbl-sm">Student Portal</div>
+<h1>PROGRES +</h1>
+<p>ministry of higher education and scientific research</p>
 </div>
 </div>
 <div class="login-main">
 <div class="login-box">
-<button class="student-access-btn">Student Access</button>
-<div>
-<label class="lbl">Registration Number</label>
-<input class="inp" type="text" placeholder="ex: 202400000000">
+<div class="tab-row">
+<button class="tab-btn on">student access</button>
+<button class="tab-btn off">teacher access</button>
+</div>
+<label class="lbl">Registration number</label>
+<input class="inp" type="text" placeholder="ex:202400000000l" inputmode="numeric">
 <label class="lbl">Password</label>
-<input class="inp" type="password" placeholder="••••••••••">
+<input class="inp" type="password" placeholder="••••••••••••">
 <button class="btn-lg" onclick="openApp()">Login</button>
 <div class="divline">or</div>
-<button class="bio-btn">🔒 Biometric Login</button>
-</div>
+				<button class="bio-btn"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 21v-2a4 4 0 014-4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>&nbsp;Biometric Login</button>
 </div>
 </div>
 </div>
@@ -424,44 +38,9 @@ RESPONSIVE
 <!-- ══ APP ══ -->
 <div id="app-page" class="page">
 
-<!-- Sidebar overlay -->
-<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
-
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-<div class="sidebar-head">
-<div class="sidebar-logo">
-<div class="tb-icon">P+</div>
-<span class="tb-name">PROGRES+</span>
-</div>
-<button class="sidebar-close" onclick="closeSidebar()">✕</button>
-</div>
-<div class="sidebar-student">
-<div class="sidebar-av" id="sb-av">AM</div>
-<div>
-<div class="sidebar-nm" id="sb-nm">Amira k.</div>
-<div class="sidebar-info" id="sb-info">Section:1 · G:1</div>
-</div>
-</div>
-<nav class="sidebar-nav">
-<button class="snav-btn on" data-sec="dashboard"><span class="snav-icon">🏠</span> Dashboard</button>
-<button class="snav-btn" data-sec="marks"><span class="snav-icon">📊</span> Academic Marks</button>
-<button class="snav-btn" data-sec="timetable"><span class="snav-icon">📅</span> Timetable</button>
-<button class="snav-btn" data-sec="profile"><span class="snav-icon">👤</span> Profile</button>
-</nav>
-</div>
-
-<!-- Topbar -->
 <header class="topbar">
 <div class="tb-left">
-<!-- Hamburger (mobile only) -->
-<button class="ham-btn" onclick="openSidebar()">
-<span></span><span></span><span></span>
-</button>
-<div class="tb-logo">
-<div class="tb-icon">P+</div>
-<span class="tb-name">PROGRES+</span>
-</div>
+<div class="tb-logo"><div class="tb-icon">P+</div><span class="tb-name">PROGRES+</span></div>
 <nav class="top-nav">
 <button class="tnav on" data-sec="dashboard">Dashboard</button>
 <button class="tnav" data-sec="marks">Academic Marks</button>
@@ -472,7 +51,7 @@ RESPONSIVE
 <div class="tb-right">
 <span class="pill-sm">Section: 1 &nbsp; G:1</span>
 <div class="notif-wrap">
-<div class="ico" id="bell-btn" onclick="toggleNotif()">🔔<span class="notif-dot" id="notif-dot"></span></div>
+				<div class="ico" id="bell-btn" onclick="toggleNotif()"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h11z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="notif-dot" id="notif-dot"></span></div>
 <div class="notif-dropdown" id="notif-dropdown">
 <div class="nd-header"><h4>Notifications</h4><button class="nd-clear" onclick="clearNotifs()">Mark all read</button></div>
 <div id="nd-list"></div>
@@ -482,7 +61,21 @@ RESPONSIVE
 </div>
 </header>
 
-<!-- Content -->
+<nav class="bottom-nav">
+<div class="bnav-row">
+	<button class="bnav-btn on" data-sec="dashboard"><span class="bico"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Home</span></button>
+	<button class="bnav-btn" data-sec="marks"><span class="bico"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 3v18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13v6M15 9v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Marks</span></button>
+	<button class="bnav-btn" data-sec="timetable"><span class="bico"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Timetable</span></button>
+	<button class="bnav-btn bnav-notif" onclick="toggleNotif()"><span class="bico"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h11z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Alerts</span><span class="bnav-dot" id="bnav-dot"></span></button>
+	<button class="bnav-btn" data-sec="profile"><span class="bico"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Profile</span></button>
+</div>
+</nav>
+
+<div id="mobile-panel" class="mobile-panel">
+	<div class="mobile-panel-header"><h4>Notifications</h4><button onclick="closeMobilePanel()"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+<div id="nd-list-mobile"></div>
+</div>
+
 <div class="content">
 
 <!-- DASHBOARD -->
@@ -548,7 +141,7 @@ RESPONSIVE
 </div>
 <div class="tt-wrap">
 <table class="tt">
-<thead><tr><th style="width:90px;padding:10px 14px">Day</th><th>08:00–09:30</th><th>10:00–11:30</th><th>12:00–13:30</th></tr></thead>
+<thead><tr><th style="width:80px;padding:10px 14px">Day</th><th>08:00–09:30</th><th>10:00–11:30</th><th>12:00–13:30</th></tr></thead>
 <tbody id="tt-body"></tbody>
 </table>
 </div>
@@ -563,10 +156,10 @@ RESPONSIVE
 <div class="prof-av" id="p-init"></div>
 <div><div class="prof-nm" id="p-name"></div><div class="prof-yr" id="p-year"></div></div>
 </div>
-<div class="ir"><span class="ik">Level</span><span class="iv" id="p-level"></span></div>
-<div class="ir"><span class="ik">Major</span><span class="iv" id="p-major"></span></div>
+<div class="ir"><span class="ik">Level</span> <span class="iv" id="p-level"></span></div>
+<div class="ir"><span class="ik">Major</span> <span class="iv" id="p-major"></span></div>
 <div class="ir"><span class="ik">Section / Group</span><span class="iv" id="p-section"></span></div>
-<div class="ir"><span class="ik">Year</span><span class="iv" id="p-year2"></span></div>
+<div class="ir"><span class="ik">Year</span> <span class="iv" id="p-year2"></span></div>
 </div>
 <div class="schol-card">
 <div class="schol-status" id="p-schol-s"></div>
@@ -580,366 +173,17 @@ RESPONSIVE
 </div>
 </div>
 
-<!-- MODAL -->
+<!-- CALENDAR MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
 <div class="modal-box">
 <div class="modal-header">
-<h3>📅 University Calendar 2025–2026</h3>
-<button class="modal-close" onclick="closeModal()">✕</button>
+<h3><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> University Calendar 2025–2026</h3>
+<button class="modal-close" onclick="closeModal()"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </div>
 <div class="modal-body" id="modal-body"></div>
 </div>
 </div>
 
-<script>
-/* ══ DATA ══ */
-const DATA = {
-student: {
-name: "Amira k.", initials: "AM",
-level: "Licence 2 (L2)", major: "Mathematics",
-section: "Section:1", group: "G:1",
-year: "2025 / 2026", semester: 3, date: "28 feb 2026"
-},
-scholarship: { status: "Paid", amount: 4000, date: "12 feb 2026" },
-activeSem: "S3",
-semesters: {
-S3: { credits: 60, modules: [
-{ name: "Algebre 3", coeff: 3, cc: 7, exam: 3, isNew: false },
-{ name: "Analysis 3", coeff: 4, cc: 12, exam: 14, isNew: true },
-{ name: "Topology", coeff: 3, cc: 9, exam: 3, isNew: true },
-{ name: "Numerical analysis",coeff: 3, cc: 17, exam: 17, isNew: true },
-{ name: "OPM", coeff: 1, cc: 17, exam: 14.5, isNew: true },
-{ name: "Mathematical logic",coeff: 2, cc: 12.5, exam: 14.88, isNew: true }
-]},
-S4: { credits: 60, modules: [] },
-S2: { credits: 60, modules: [] },
-S1: { credits: 60, modules: [] }
-},
-timetable: {
-Sunday: [
-{ type:"c", name:"Numerical analysis", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"td", name:"Alg 3", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"td", name:"Numerical analysis", teacher:"Mme.Hhhh", room:"S.252" }
-],
-Monday: [
-{ type:"td", name:"Analysis 3", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"c", name:"Topology", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"c", name:"Math logic", teacher:"Mme.Hhhh", room:"S.252" }
-],
-Tuesday: [
-{ type:"c", name:"Analysis", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"td", name:"Math logic", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"td", name:"Numerical analysis", teacher:"Mme.Hhhh", room:"S.252" }
-],
-Wednesday: [
-{ type:"td", name:"Topology", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"tp", name:"OPM", teacher:"Mme.Hhhh", room:"S.252", time:"10:00–12:00" },
-null
-],
-Thursday: [
-{ type:"td", name:"Analysis", teacher:"Mme.Hhhh", room:"S.252" },
-{ type:"tp", name:"Num ana", teacher:"Mme.Hhhh", room:"S.252", time:"10:00–12:00" },
-null
-]
-},
-todayDay: "Sunday",
-nextEvent: { date:"12 MAR", name:"Resit Session", day:"Saturday" },
-calendar: [
-{ month:"February 2026", events:[
-{ date:"12 Feb", name:"Scholarship Payment", desc:"Versement 4 000 DA", tag:"tag-event", label:"Payment" },
-{ date:"28 Feb", name:"End of S3 courses", desc:"Last day of semester 3", tag:"tag-event", label:"Academic" }
-]},
-{ month:"March 2026", events:[
-{ date:"7–18 Mar", name:"Resit Session", desc:"All S3 failed modules", tag:"tag-session", label:"Resit" },
-{ date:"20 Mar", name:"Start of S4 courses", desc:"Semester 4 begins", tag:"tag-event", label:"Academic" }
-]},
-{ month:"January 2026", events:[
-{ date:"15–25 Jan", name:"Exams S3", desc:"Semester 3 final exams", tag:"tag-exam", label:"Exam" }
-]},
-{ month:"May – June 2026", events:[
-{ date:"15–25 May", name:"Exams S4", desc:"Semester 4 final exams", tag:"tag-exam", label:"Exam" },
-{ date:"1–15 Jun", name:"Resit Session S4", desc:"Rattrapage semester 4", tag:"tag-session", label:"Resit" },
-{ date:"30 Jun", name:"Summer Vacation", desc:"End of academic year", tag:"tag-holiday", label:"Holiday" }
-]}
-]
-};
-
-/* ══ CALCULATIONS ══ */
-function moduleAvg(m) {
-if (m.cc === null && m.exam === null) return null;
-if (m.cc === null) return m.exam;
-if (m.exam === null) return m.cc;
-return m.cc * 0.4 + m.exam * 0.6;
-}
-function semAvg(key) {
-let w = 0, c = 0;
-DATA.semesters[key].modules.forEach(m => {
-const a = moduleAvg(m);
-if (a !== null) { w += a * m.coeff; c += m.coeff; }
-});
-return c > 0 ? (w / c).toFixed(2) : "—";
-}
-function semPassed(key) {
-return DATA.semesters[key].modules.filter(m => { const a = moduleAvg(m); return a !== null && a >= 10; }).length;
-}
-function newModules(key) { return DATA.semesters[key].modules.filter(m => m.isNew); }
-
-/* ══ HELPERS ══ */
-const $ = id => document.getElementById(id);
-const set = (id, v) => { const el=$(id); if(el) el.textContent=v; };
-const gradeClass = v => v===null ? 'mn' : v>=10 ? 'mg' : 'mr';
-
-/* ══ RENDER ══ */
-function renderDashboard() {
-const s = DATA.student, sch = DATA.scholarship, sem = DATA.activeSem;
-const avg = semAvg(sem), passed = semPassed(sem), total = DATA.semesters[sem].modules.length;
-const newMods = newModules(sem);
-set('dash-meta', `semestre ${s.semester} · ${s.date}`);
-set('d-avg', avg);
-set('d-passed', passed);
-set('d-total', `/ ${total}`);
-set('d-schol', sch.status);
-set('d-schol-amt', `${sch.amount.toLocaleString()} DA`);
-set('cal-day', DATA.nextEvent.day);
-set('cal-date', DATA.nextEvent.date);
-set('cal-ev', DATA.nextEvent.name);
-
-const bar = $('notif-bar');
-if (bar) {
-bar.style.display = newMods.length ? 'flex' : 'none';
-if (newMods.length) {
-set('notif-bar-title', 'New note available !');
-set('notif-bar-sub', `${newMods[0].name} · published just now`);
-}
-}
-
-const slots = ["08:00–09:30","10:00–11:30","12:00–13:30"];
-const labels = { c:"Cour", td:"TD", tp:"TP" };
-const tc = $('today-classes');
-if (tc) tc.innerHTML = (DATA.timetable[DATA.todayDay]||[]).map((cl,i) => cl ? `
-<div class="chip">
-<div class="chip-type">${labels[cl.type]}</div>
-<div class="chip-name">${cl.name}</div>
-<div class="chip-info">${cl.teacher} · ${cl.room}</div>
-<div class="chip-info">${cl.time||slots[i]}</div>
-</div>` : '').join('');
-}
-
-function renderMarks(key) {
-const sem = DATA.semesters[key];
-const avg = semAvg(key);
-const dec = parseFloat(avg) >= 10 ? "Admis(e)" : "Ajourné(e)";
-set('marks-meta', `semestre ${key.replace('S','')} · ${DATA.student.date}`);
-set('m-avg', `Annual average: ${avg}`);
-set('m-cred', `Credits: ${sem.credits}`);
-const decEl = $('m-dec');
-if (decEl) { decEl.textContent=`Decision: ${dec}`; decEl.className=`mm-d ${dec.includes('Admis')?'pass':'fail'}`; }
-const tbody = $('marks-body');
-if (!tbody) return;
-if (!sem.modules.length) {
-tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px">No data for ${key}</td></tr>`;
-return;
-}
-tbody.innerHTML = sem.modules.map(m => {
-const a = moduleAvg(m);
-return `<tr id="row-${m.name.replace(/\s+/g,'-')}">
-<td>${m.name}${m.isNew?'<span class="new-tag">New</span>':''}</td>
-<td>${m.coeff}</td>
-<td><span class="${gradeClass(m.cc)}">${m.cc??'—'}</span></td>
-<td><span class="${gradeClass(m.exam)}">${m.exam??'—'}</span></td>
-<td class="${gradeClass(a)}">${a!==null?a.toFixed(2):'—'}</td>
-</tr>`;
-}).join('');
-}
-
-function renderSemTabs() {
-const tabs = $('sem-tabs');
-if (!tabs) return;
-tabs.innerHTML = Object.keys(DATA.semesters).map(k =>
-`<button class="st ${k===DATA.activeSem?'on':''}" onclick="switchSem('${k}')">${k}</button>`
-).join('');
-}
-function switchSem(key) { DATA.activeSem=key; renderSemTabs(); renderMarks(key); }
-
-function renderTimetable() {
-set('tt-meta', `semestre ${DATA.student.semester} · ${DATA.student.date}`);
-const labels = { c:"Cour", td:"TD", tp:"TP" };
-const tbody = $('tt-body');
-if (!tbody) return;
-tbody.innerHTML = Object.entries(DATA.timetable).map(([day,cells]) =>
-`<tr><td class="day-td">${day}</td>${cells.map((cl,i) => cl
-? `<td><div class="ttc ${cl.type}">
-<div class="ttc-type">${labels[cl.type]}</div>
-<div class="ttc-name">${cl.name}</div>
-<div class="ttc-info">${cl.teacher} · ${cl.room}</div>
-${cl.time?`<div class="ttc-info">${cl.time}</div>`:''}
-</div></td>`
-: `<td><span class="tt-empty">—</span></td>`
-).join('')}</tr>`
-).join('');
-}
-
-function renderProfile() {
-const s = DATA.student, sch = DATA.scholarship;
-set('prof-meta', `semestre ${s.semester} · ${s.date}`);
-set('p-init', s.initials); set('p-name', s.name); set('p-year', s.year); set('p-year2', s.year);
-set('p-level', s.level); set('p-major', s.major);
-set('p-section', `${s.section} · ${s.group}`);
-set('p-schol-s', `${sch.status==='Paid'?'✅':' ❌'} Scholarship : ${sch.status}`);
-set('p-schol-a', `${sch.amount.toLocaleString()} DA`);
-set('p-schol-d', `versement ${sch.date}`);
-const eg = $('prof-events');
-if (eg) eg.innerHTML = DATA.calendar.flatMap(m=>m.events).slice(0,3).map(e=>`
-<div class="ev-card">
-<div class="ev-date">${e.date}</div>
-<div class="ev-nm">${e.name}</div>
-<div class="ev-rng">${e.desc}</div>
-</div>`).join('');
-}
-
-function renderCalModal() {
-const body = $('modal-body');
-if (!body) return;
-body.innerHTML = DATA.calendar.map(m=>`
-<div class="cal-month">
-<div class="cal-month-title">${m.month}</div>
-${m.events.map(e=>`
-<div class="cal-event-row">
-<div class="cal-ev-date">${e.date}</div>
-<div class="cal-ev-info">
-<h5>${e.name}</h5><p>${e.desc}</p>
-<span class="cal-tag ${e.tag}">${e.label}</span>
-</div>
-</div>`).join('')}
-</div>`).join('');
-}
-
-function buildNotifs() {
-const list = [];
-Object.keys(DATA.semesters).forEach(key => {
-newModules(key).forEach(m => list.push({ icon:"📝", title:"New note available!", sub:`${m.name} · ${key}`, time:"just now", mod:m.name }));
-});
-list.push({ icon:"📅", title:"Resit Session reminder", sub:"Starts 12 March 2026", time:"1 hour ago", mod:null });
-list.push({ icon:"✅", title:"Scholarship paid", sub:`${DATA.scholarship.amount} DA`, time:"16 days ago", mod:null });
-return list;
-}
-
-function renderNotifs(listId) {
-const el = $(listId);
-if (!el) return;
-el.innerHTML = buildNotifs().map((n,i)=>`
-<div class="nd-item ${i===0?'unread':''}" onclick="notifClick(${i})">
-<div class="nd-icon">${n.icon}</div>
-<div class="nd-body"><h5>${n.title}</h5><p>${n.sub}</p><div class="nd-time">${n.time}</div></div>
-${i===0?'<div class="nd-dot"></div>':''}
-</div>`).join('');
-}
-
-function notifClick(i) {
-const n = buildNotifs()[i]; clearNotifs();
-if (n.mod) { goSec('marks'); flashRow(n.mod); }
-}
-
-function flashRow(modName) {
-const id = 'row-' + modName.replace(/\s+/g,'-');
-setTimeout(() => {
-const row = $(id);
-if (!row) return;
-row.scrollIntoView({ behavior:'smooth', block:'center' });
-row.style.transition='background .3s'; row.style.background='#BFDBFE';
-setTimeout(() => row.style.background='', 1200);
-}, 200);
-}
-
-/* TOAST */
-function showToast(modName) {
-const t = document.createElement('div');
-t.style.cssText='position:fixed;top:70px;right:20px;z-index:999;background:#fff;border:1px solid #DDDBD4;border-radius:14px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,.15);max-width:340px;width:calc(100vw - 40px);display:flex;gap:12px;align-items:center;animation:toastIn .3s ease';
-t.innerHTML=`
-<div style="width:38px;height:38px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📝</div>
-<div style="flex:1"><div style="font-size:13px;font-weight:700">New note available!</div><div style="font-size:12px;color:var(--muted)">${modName} · just now</div></div>
-<button onclick="goSec('marks');flashRow('${modName}');this.parentElement.remove()"
-style="padding:6px 12px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap">See now</button>`;
-document.body.appendChild(t);
-const s=document.createElement('style');
-s.textContent='@keyframes toastIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}';
-document.head.appendChild(s);
-setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity .4s'; setTimeout(()=>t.remove(),400); }, 5000);
-}
-
-/* ══ NAVIGATION ══ */
-function openApp() {
-$('login-page').classList.remove('active');
-$('app-page').classList.add('active');
-init();
-const nm = newModules(DATA.activeSem);
-if (nm.length) setTimeout(() => showToast(nm[0].name), 1200);
-}
-function closeApp() {
-$('app-page').classList.remove('active');
-$('login-page').classList.add('active');
-}
-
-function goSec(id) {
-document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
-document.querySelectorAll('[data-sec]').forEach(b => b.classList.remove('on'));
-$(id).classList.add('on');
-document.querySelectorAll(`[data-sec="${id}"]`).forEach(b => b.classList.add('on'));
-$('notif-dropdown').classList.remove('open');
-closeSidebar();
-}
-
-document.querySelectorAll('[data-sec]').forEach(btn =>
-btn.addEventListener('click', () => goSec(btn.dataset.sec))
-);
-
-/* ══ SIDEBAR ══ */
-function openSidebar() {
-$('sidebar').classList.add('open');
-$('sidebar-overlay').classList.add('open');
-document.body.style.overflow = 'hidden';
-}
-function closeSidebar() {
-$('sidebar').classList.remove('open');
-$('sidebar-overlay').classList.remove('open');
-document.body.style.overflow = '';
-}
-
-/* ══ NOTIFICATIONS ══ */
-function toggleNotif() {
-$('notif-dropdown').classList.toggle('open');
-}
-function clearNotifs() {
-$('notif-dot').style.display='none';
-document.querySelectorAll('.nd-item.unread').forEach(el=>el.classList.remove('unread'));
-document.querySelectorAll('.nd-dot').forEach(el=>el.remove());
-$('notif-dropdown').classList.remove('open');
-}
-document.addEventListener('click', e => {
-const dd=$('notif-dropdown'), bell=$('bell-btn');
-if (dd?.classList.contains('open') && !dd.contains(e.target) && !bell.contains(e.target))
-dd.classList.remove('open');
-});
-
-/* ══ MODAL ══ */
-function openModal() { $('modal').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(e) { if (!e||e.target===$('modal')||!e.target) { $('modal').classList.remove('open'); document.body.style.overflow=''; } }
-
-/* ══ INIT ══ */
-function init() {
-const s = DATA.student;
-set('sb-av', s.initials);
-set('sb-nm', s.name);
-set('sb-info', `${s.section} · ${s.group}`);
-renderDashboard();
-renderSemTabs();
-renderMarks(DATA.activeSem);
-renderTimetable();
-renderProfile();
-renderCalModal();
-renderNotifs('nd-list');
-$('notif-dot').style.display = 'block';
-}
-</script>
+<script src="css/script.js"></script>
 </body>
 </html>
